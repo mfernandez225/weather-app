@@ -10,6 +10,9 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <!-- JQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+    integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
   <!-- CSS -->
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -21,34 +24,39 @@
         <!-- Search bar for city -->
         <h5 class="card-title m-3">Search for a City:</h5>
         <div class="input-group">
-          <input id="findCity" type="text" class="form-control" aria-describedby="button-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="searchCity">Search</button>
-          </div>
+          <form id="searchForm">
+            <div class="input-group">
+              <input id="findCity" type="text" class="form-control">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id="searchCity">Search</button>
+              </div>
+            </div>
+          </form>
         </div>
+        <ul id="storedCities" class="list-unstyled text-center font-weight-bold mt-4"></ul>
       </div>
       <div class="col-sm-8">
         <div class="currentLocationWeather">
           <div class="card m-2">
             <div class="card-body">
-              <h5 id="citySearched" class="card-title">
-                Specific City Weather</h5>
-              <p id="temperature" class="card-text">Temperature</p>
-              <p id="humidity" class="card-text">Humidity</p>
-              <p id="windSpeed" class="card-text">Wind Speed</p>
-              <p id="uvIndex" class="card-text">UV Index</p>
+              <h5 class="">Current City:</h5>
+              <h5 id="citySearched" class="card-title text-info font-weight-bolder"></h5>
+              <p id="temperature" class="card-text font-weight-bolder"></p>
+              <p id="humidity" class="card-text font-weight-bolder"></p>
+              <p id="windSpeed" class="card-text font-weight-bolder"></p>
+              <p id="uvIndex" class="card-text font-weight-bolder"></p>
             </div>
           </div>
           <div class="fiveDayWeather">
             <div class="card m-2">
               <div class="card-body">
                 <h5 class="card-title">5-Day Forecast</h5>
-                <div class="row row-col-4 justify-content-center">
-                  <div id="dayOne" class="border border-dark p-5 m-2">1</div>
-                  <div id="dayTwo" class="border border-dark p-5 m-2">2</div>
-                  <div id="dayThree" class="border border-dark p-5 m-2">3</div>
-                  <div id="dayFour" class="border border-dark p-5 m-2">4</div>
-                  <div id="dayFive" class="border border-dark p-5 m-2">5</div>
+                <div class="row">
+                  <div id="dayOne" class="col-lg border border-dark bg-info m-1 p-2"></div>
+                  <div id="dayTwo" class="col-lg border border-dark bg-info m-1 p-2"></div>
+                  <div id="dayThree" class="col-lg border border-dark bg-info m-1 p-2"></div>
+                  <div id="dayFour" class="col-lg border border-dark bg-info m-1 p-2"></div>
+                  <div id="dayFive" class="col-lg border border-dark bg-info m-1 p-2"></div>
                 </div>
               </div>
             </div>

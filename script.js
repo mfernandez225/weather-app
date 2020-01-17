@@ -1,6 +1,5 @@
 const apiKey = "a64170d48eba7179e009a291124e0d69";
-const days = [
-  {
+const days = [{
     id: "#dayOne",
     index: 4
   },
@@ -32,7 +31,7 @@ const displayStoredCities = () => {
   storedCities = localStorage.getItem("storedCities");
   cities = storedCities ? JSON.parse(storedCities) : [];
   $("#storedCities").html("");
-  cities.forEach(function(cityName) {
+  cities.forEach(function (cityName) {
     const cityLi = $(
       `<li class="m-1"><button class="btn btn-primary btn-block">${cityName}</button></li>`
     ).on("click", () => {
@@ -46,7 +45,7 @@ displayStoredCities();
 
 const displayWeatherForCity = cityName => {
   const cityURL =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityName +
     "&units=imperial&apikey=" +
     apiKey;
@@ -54,7 +53,7 @@ const displayWeatherForCity = cityName => {
   $.ajax({
     url: cityURL,
     method: "GET"
-  }).then(function(response) {
+  }).then(function (response) {
     $("#citySearched").text(response.name);
     $("#temperature").text("Temperature " + response.main.temp);
     $("#humidity").text("Humidity " + response.main.humidity);
@@ -64,24 +63,24 @@ const displayWeatherForCity = cityName => {
     let lat = response.coord.lat;
     let lon = response.coord.lon;
 
-    let uvIndexURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
+    let uvIndexURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
     $.ajax({
       url: uvIndexURL,
       method: "GET"
-    }).then(function(response2) {
+    }).then(function (response2) {
       $("#uvIndex").text("UV Index " + response2.value);
     });
 
     // Five Day forecast AJAX call
-    var forecastURL = `http://api.openweathermap.org/data/2.5/forecast?appid=${apiKey}&lat=${lat}&lon=${lon}&units=imperial`;
+    var forecastURL = `https://api.openweathermap.org/data/2.5/forecast?appid=${apiKey}&lat=${lat}&lon=${lon}&units=imperial`;
     $.ajax({
       url: forecastURL,
       method: "GET"
-    }).then(function(response3) {
+    }).then(function (response3) {
       days.forEach(day => {
         $(day.id).html("");
         let img = $(
-          `<img src="${`http://openweathermap.org/img/w/${
+          `<img src="${`https://openweathermap.org/img/w/${
             response3.list[day.index].weather[0].icon
           }.png`}" />`
         );
@@ -103,7 +102,7 @@ const displayWeatherForCity = cityName => {
 };
 
 // The search when button is clicked
-$("#searchForm").on("submit", function(event) {
+$("#searchForm").on("submit", function (event) {
   event.preventDefault();
 
   // What we need to find
